@@ -81,7 +81,11 @@ namespace Rajaraman.Pizza.Client
 
         private async void LoadProductsAndCustomers()
         {
-            PizzaServiceClient proxy = new PizzaServiceClient("NetTcpBinding_IPizzaService");
+            // Use auto generated proxy to make service calls
+            //PizzaServiceClient proxy = new PizzaServiceClient("NetTcpBinding_IPizzaService");
+
+            // Use manually created proxy to make service calls
+            PizzaProxy proxy = new PizzaProxy("NetTcpBinding_IPizzaService");
 
             try
             {
@@ -103,7 +107,9 @@ namespace Rajaraman.Pizza.Client
         {
             if (_CurrentOrder.CustomerId != Guid.Empty && _CurrentOrder.OrderItems.Count > 0)
             {
-                PizzaServiceClient proxy = new PizzaServiceClient("NetTcpBinding_IZzaService");
+                //PizzaServiceClient proxy = new PizzaServiceClient("NetTcpBinding_IZzaService");
+                PizzaProxy proxy = new PizzaProxy("NetTcpBinding_IPizzaService");
+
                 try
                 {
                     proxy.SubmitOrder(_CurrentOrder);
